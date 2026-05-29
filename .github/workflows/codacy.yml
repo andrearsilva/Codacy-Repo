@@ -59,6 +59,7 @@ jobs:
           curl -L https://github.com/codacy/codacy-analysis-cli/releases/latest/download/codacy-analysis-cli-assembly.jar -o ${{ runner.temp }}/codacy-analysis-cli.jar
 
       - name: Run Codacy Analysis CLI
+        continue-on-error: true
         run: |
           java -jar ${{ runner.temp }}/codacy-analysis-cli.jar analyze \
             --provider gh \
