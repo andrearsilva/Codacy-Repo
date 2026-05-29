@@ -2,6 +2,7 @@ import os
 import sqlite3
 import hashlib
 import sys # Unused import (will trigger code quality warnings)
+import json # Another unused import to trigger quality checks
 
 # 1. Hardcoded sensitive credential (SAST issue)
 SUPER_SECRET_API_KEY = "sk-live-5678-abcde-99999-mysecretkey"
@@ -48,3 +49,13 @@ def unused_and_unsafe_helper():
     # Unreachable code block
     return list
     unused_variable = "I am never used"
+
+def another_vulnerable_function(data):
+    # 6. Unsafe exec() execution (SAST critical issue)
+    exec(data)
+    
+    # 7. Lint issue: duplicate dictionary keys
+    bad_dict = {"a": 1, "a": 2}
+    
+    # 8. Lint issue: unused local variable
+    unused_val = bad_dict
