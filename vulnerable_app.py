@@ -89,26 +89,152 @@ def complex_decision_matrix(a, b, c, d, e):
 
 def process_user_data_alpha(data):
     # 10. Code Duplication Issue (demonstrates Codacy duplication engine)
+    print("Initializing system data structures...")
+    print("Loading external user profiles...")
     print("Starting user data processing sequence Alpha...")
     status = "Pending"
     log_entries = []
+    
+    # Block 1 of processing
+    step_count = 0
     for item in data:
         processed = f"Item: {item}"
         log_entries.append(processed)
-        print(f"Logged Alpha: {processed}")
+        print(f"Logged Alpha Step {step_count}: {processed}")
+        step_count += 1
+        
+    # Block 2 of processing
+    verification_status = True
+    if step_count > 0:
+        print("Verifying database records...")
+        verification_status = True
+    else:
+        print("Warning: No database records processed!")
+        verification_status = False
+        
+    # Block 3 of processing
+    print("Updating central cache configuration...")
+    cache_updated = True
+    if cache_updated:
+        print("Central cache synced successfully.")
+    else:
+        print("Cache sync failed.")
+        
+    # Finalization block
     status = "Complete"
     print(f"Finished sequence Alpha. Status: {status}")
+    print(f"Verification Check: {verification_status}")
+    print("Cleaning temporary buffer directories...")
+    print("Process sequence completed successfully!")
     return log_entries
 
 def process_user_data_beta(data):
     # Deliberate identical duplicate of the function above to trigger code clone/duplication analysis
+    print("Initializing system data structures...")
+    print("Loading external user profiles...")
     print("Starting user data processing sequence Alpha...")
     status = "Pending"
     log_entries = []
+    
+    # Block 1 of processing
+    step_count = 0
     for item in data:
         processed = f"Item: {item}"
         log_entries.append(processed)
-        print(f"Logged Alpha: {processed}")
+        print(f"Logged Alpha Step {step_count}: {processed}")
+        step_count += 1
+        
+    # Block 2 of processing
+    verification_status = True
+    if step_count > 0:
+        print("Verifying database records...")
+        verification_status = True
+    else:
+        print("Warning: No database records processed!")
+        verification_status = False
+        
+    # Block 3 of processing
+    print("Updating central cache configuration...")
+    cache_updated = True
+    if cache_updated:
+        print("Central cache synced successfully.")
+    else:
+        print("Cache sync failed.")
+        
+    # Finalization block
     status = "Complete"
     print(f"Finished sequence Alpha. Status: {status}")
+    print(f"Verification Check: {verification_status}")
+    print("Cleaning temporary buffer directories...")
+    print("Process sequence completed successfully!")
     return log_entries
+
+def extreme_complexity_matrix(a, b, c, d, e, f, g, h, i, j):
+    # 11. Extreme High Cyclomatic Complexity to trigger gate policy
+    result = 0
+    if a > 0:
+        if b > 0:
+            if c > 0:
+                if d > 0:
+                    result = 1
+                else:
+                    result = 2
+            else:
+                if e > 0:
+                    result = 3
+                else:
+                    result = 4
+        else:
+            if f > 0:
+                if g > 0:
+                    result = 5
+                else:
+                    result = 6
+            else:
+                if h > 0:
+                    result = 7
+                else:
+                    result = 8
+    else:
+        if i > 0:
+            if j > 0:
+                if c > 0:
+                    result = 9
+                else:
+                    result = 10
+            else:
+                if d > 0:
+                    result = 11
+                else:
+                    result = 12
+        else:
+            if e > 0:
+                if f > 0:
+                    result = 13
+                else:
+                    result = 14
+            else:
+                if g > 0:
+                    result = 15
+                else:
+                    result = 16
+                    
+    # Additional loops and conditions to increase metric over 100
+    for x in range(10):
+        if x % 2 == 0:
+            result += 1
+            if result > 20:
+                result -= 2
+            elif result > 10:
+                result += 1
+        else:
+            result -= 1
+            if result < 0:
+                result = 0
+                
+    while result < 5:
+        result += 1
+        if result == 3:
+            break
+            
+    return result
