@@ -64,7 +64,6 @@ jobs:
             --provider gh \
             --username andrearsilva \
             --project Codacy-Repo \
-            --max-allowed-issues 2147483647 \
             --upload
         env:
           CODACY_API_TOKEN: ${{ secrets.CODACY_API_TOKEN }}
