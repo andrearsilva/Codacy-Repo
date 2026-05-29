@@ -1,0 +1,69 @@
+name: Codacy CI
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  test-and-coverage:
+    name: Run Tests and Upload Coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests with coverage
+        run: |
+          pytest --cov=. --cov-report=xml
+
+      - name: Upload Coverage to Codacy
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          api-token: ${{ secrets.CODACY_API_TOKEN }}
+          coverage-reports: coverage.xml
+        env:
+          CODACY_ORGANIZATION_PROVIDER: gh
+          CODACY_USERNAME: andrearsilva
+          CODACY_PROJECT_NAME: Codacy-Repo
+
+  sast-analysis:
+    name: SAST Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Download Codacy Analysis CLI
+        run: |
+          curl -L https://github.com/codacy/codacy-analysis-cli/releases/latest/download/codacy-analysis-cli-assembly.jar -o ${{ runner.temp }}/codacy-analysis-cli.jar
+
+      - name: Run Codacy Analysis CLI
+        run: |
+          java -jar ${{ runner.temp }}/codacy-analysis-cli.jar analyze \
+            --provider gh \
+            --username andrearsilva \
+            --project Codacy-Repo \
+            --upload
+        env:
+          CODACY_API_TOKEN: ${{ secrets.CODACY_API_TOKEN }}
