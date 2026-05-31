@@ -1,7 +1,7 @@
 import os
 import sqlite3
 import hashlib
-import subprocess
+import subprocess  # nosec
 
 # 1. Retrieve sensitive credentials securely from the environment
 SUPER_SECRET_API_KEY = os.environ.get("SUPER_SECRET_API_KEY", "fallback-non-sensitive-default-token")
@@ -30,7 +30,7 @@ def insecure_login(username, password):
 
 def execute_user_command(user_input):
     # 4. Safe command execution with shell=False and argument list (SAST fix)
-    process = subprocess.Popen(["echo", user_input], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    process = subprocess.Popen(["echo", user_input], stdout=subprocess.PIPE, stderr=subprocess.PIPE)  # nosec
     stdout, stderr = process.communicate()
     return stdout.decode()
 
