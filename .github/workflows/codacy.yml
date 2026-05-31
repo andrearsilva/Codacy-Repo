@@ -40,6 +40,16 @@ jobs:
           CODACY_USERNAME: andrearsilva
           CODACY_PROJECT_NAME: Codacy-Repo
 
+      - name: Check Codacy Coverage Gates
+        env:
+          CODACY_API_TOKEN: ${{ secrets.CODACY_API_TOKEN }}
+          PROVIDER: gh
+          ORGANIZATION: andrearsilva
+          REPOSITORY: Codacy-Repo
+          COMMIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          python .github/scripts/check_coverage_gate.py
+
   sast-analysis:
     name: SAST Analysis
     runs-on: ubuntu-latest
