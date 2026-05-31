@@ -1,0 +1,8 @@
+---
+exclude_paths:
+  - '.github/**'
+  - 'venv/**'
+  - '.codacy/**'
+  - 'requirements.txt'
+  - 'failed_run.log'
+  - 'run_older.log'
