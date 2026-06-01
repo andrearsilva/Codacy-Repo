@@ -148,3 +148,30 @@ def extreme_complexity_matrix(a, b, c, d, e, f, g, h, i, j):
                 
     result = _run_while_loop(result)
     return result
+
+def untested_function_to_fail_coverage_gate():
+    print("This is a completely untested function.")
+    print("It has many statements to ensure it reduces coverage percentage.")
+    a = 10
+    b = 20
+    c = 30
+    d = 40
+    e = 50
+    f = a + b + c + d + e
+    print(f"Sum is: {f}")
+    if f > 100:
+        print("Sum exceeds 100")
+        if f > 200:
+            print("Sum exceeds 200")
+        else:
+            print("Sum is between 100 and 200")
+    else:
+        print("Sum is 100 or less")
+    for i in range(10):
+        print(f"Loop index: {i}")
+        if i % 2 == 0:
+            print(f"Even index: {i}")
+        else:
+            print(f"Odd index: {i}")
+    return f
+
