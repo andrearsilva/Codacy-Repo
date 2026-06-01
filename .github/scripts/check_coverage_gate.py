@@ -91,11 +91,23 @@ def evaluate_gates(data):
     coverage_ok = coverage.get("isUpToStandards", True)
     quality_ok = quality.get("isUpToStandards", True)
     
+    total_coverage = coverage.get("totalCoveragePercentage")
+    
+    # Enforce local MIN_COVERAGE if set in environment
+    min_coverage_str = os.getenv("MIN_COVERAGE")
+    if min_coverage_str and total_coverage is not None:
+        try:
+            min_coverage = float(min_coverage_str)
+            if total_coverage < min_coverage:
+                print(f"[-] Enforced local minimum coverage gate failed: current {total_coverage}% < required {min_coverage}%")
+                coverage_ok = False
+        except ValueError:
+            print(f"[-] Warning: MIN_COVERAGE environment variable '{min_coverage_str}' is not a valid float.")
+    
     # Log Coverage Gate details
     print("\n" + "="*50)
     print(" CODACY COVERAGE GATE RESULTS")
     print("="*50)
-    total_coverage = coverage.get("totalCoveragePercentage")
     delta_coverage = coverage.get("deltaCoveragePercentage")
     
     if total_coverage is not None:
